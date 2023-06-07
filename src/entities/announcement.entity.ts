@@ -15,7 +15,7 @@ import { Comment } from "./comment.entity";
 @Entity()
 class Announcement {
   @PrimaryGeneratedColumn("uuid")
-  id: string;
+  id: number;
 
   @Column({ type: "varchar", length: 250, unique: true })
   brand: string;

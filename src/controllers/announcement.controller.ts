@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { createAnnouncementService } from "../services/announcement/createAnnouncement.service";
+import { updateAnnouncementService } from "../services/announcement/updateAnnouncement.service";
+import { iAnnouncementUpdate } from "../interfaces/announcement.interface";
 
 const createAnnouncementController = async (
   req: Request,
@@ -14,4 +16,13 @@ const createAnnouncementController = async (
   return res.status(201).json(announcements);
 };
 
-export { createAnnouncementController };
+const updateAnnouncementController = async (request: Request, response: Response): Promise<Response | void> => {
+  const announcementData: iAnnouncementUpdate = request.body;
+  const announcementId: number = parseInt(request.params.id);
+
+  const newData = await updateAnnouncementService(announcementData, announcementId);
+
+  response.status(200).json(newData);
+};
+
+export { createAnnouncementController, updateAnnouncementController };
