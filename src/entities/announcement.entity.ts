@@ -1,6 +1,7 @@
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -48,6 +49,9 @@ class Announcement {
 
   @CreateDateColumn({ type: "date" })
   createdAt: string;
+
+  @DeleteDateColumn({ type: "date" })
+  deletedAt: string;
 
   @ManyToOne(() => User)
   @JoinColumn()

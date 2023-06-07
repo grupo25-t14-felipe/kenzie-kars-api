@@ -9,7 +9,7 @@ import {
 } from "typeorm";
 import { getRounds, hashSync } from "bcryptjs";
 import { Length } from "class-validator";
-import { Announcement } from "./annoutcement.entity";
+import { Announcement } from "./announcement.entity";
 import { Comment } from "./comment.entity";
 
 @Entity("users")
@@ -35,11 +35,11 @@ class User {
 
   @Column({ type: "date" })
   date_of_birth: string;
-
+  
   @Column({ type: "varchar", length: 300, nullable: true })
   description: string;
 
-  @Column({ type: "boolean", default: true })
+  @Column({ type: "boolean", default: true, nullable: true })
   buyer: boolean;
 
   @CreateDateColumn({ type: "date" })
