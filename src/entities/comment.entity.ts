@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { User } from "./users.entity";
-import { Announcement } from "./annoutcement.entity";
+import { Announcement } from "./announcement.entity";
 
 @Entity("comments")
 class Comment {

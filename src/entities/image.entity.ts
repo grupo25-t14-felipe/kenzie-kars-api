@@ -5,7 +5,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Announcement } from "./annoutcement.entity";
+import { Announcement } from "./announcement.entity";
 
 @Entity("images")
 class Image {
@@ -21,4 +21,3 @@ class Image {
 }
 
 export { Image };
- 
