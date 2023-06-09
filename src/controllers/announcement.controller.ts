@@ -1,7 +1,12 @@
 import { Request, Response } from "express";
 import { createAnnouncementService } from "../services/announcement/createAnnouncement.service";
 import { updateAnnouncementService } from "../services/announcement/updateAnnouncement.service";
-import { iAnnouncementUpdate } from "../interfaces/announcement.interface";
+import {
+  iAnnouncementRetriveReturn,
+  iAnnouncementUpdate,
+} from "../interfaces/announcement.interface";
+import { retrieveAnnouncementService } from "../services/announcement/retrieveAnnouncement.service";
+import { deleteAnnouncementService } from "../services/announcement/deleteAnnouncement.service";
 
 const createAnnouncementController = async (
   req: Request,
@@ -16,13 +21,45 @@ const createAnnouncementController = async (
   return res.status(201).json(announcements);
 };
 
-const updateAnnouncementController = async (request: Request, response: Response): Promise<Response | void> => {
-  const announcementData: iAnnouncementUpdate = request.body;
-  const announcementId: number = parseInt(request.params.id);
+const updateAnnouncementController = async (
+  req: Request,
+  res: Response
+): Promise<Response | void> => {
+  const announcementData: iAnnouncementUpdate = req.body;
+  const announcementId: number = parseInt(req.params.id);
 
-  const newData = await updateAnnouncementService(announcementData, announcementId);
+  const newData = await updateAnnouncementService(
+    announcementData,
+    announcementId
+  );
 
-  response.status(200).json(newData);
+  return res.status(200).json(newData);
 };
 
-export { createAnnouncementController, updateAnnouncementController };
+const retrieveAnnouncementController = async (
+  req: Request,
+  res: Response
+): Promise<Response | void> => {
+  const getAnnouncement: iAnnouncementRetriveReturn =
+    await retrieveAnnouncementService();
+
+  return res.status(200).json(getAnnouncement);
+};
+
+const deleteAnnouncementController = async (
+  request: Request,
+  response: Response
+): Promise<Response | void> => {
+  const announcementId: number = parseInt(request.params.id);
+
+  await deleteAnnouncementService(announcementId);
+
+  response.status(204).send();
+};
+
+export {
+  createAnnouncementController,
+  updateAnnouncementController,
+  retrieveAnnouncementController,
+  deleteAnnouncementController,
+};

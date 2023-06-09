@@ -36,9 +36,12 @@ const updateAnnouncementSchemaReturn = updateAnnouncementSchema.extend({
   createdAt: z.string().optional(),
 });
 
+const returnAnnouncementSchemaAll = announcementSchema.array();
+
 export {
   announcementSchema,
   createAnnouncementSchema,
   updateAnnouncementSchema,
   updateAnnouncementSchemaReturn,
+  returnAnnouncementSchemaAll,
 };

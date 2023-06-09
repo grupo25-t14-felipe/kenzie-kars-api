@@ -2,6 +2,8 @@ import { Router } from "express";
 import { ensureauthMiddleware } from "../middlewares/ensureAuthExists.middleware";
 import {
   createAnnouncementController,
+  deleteAnnouncementController,
+  retrieveAnnouncementController,
   updateAnnouncementController,
 } from "../controllers/announcement.controller";
 import ensureAnnouncementExistsMiddleware from "../middlewares/ensureAnnouncementExists.middleware";
@@ -14,6 +16,17 @@ announcementRoutes.patch(
   ensureauthMiddleware,
   ensureAnnouncementExistsMiddleware,
   updateAnnouncementController
+);
+announcementRoutes.get(
+  "",
+  ensureauthMiddleware,
+  retrieveAnnouncementController
+);
+announcementRoutes.delete(
+  "/:id",
+  ensureauthMiddleware,
+  ensureAnnouncementExistsMiddleware,
+  deleteAnnouncementController
 );
 
 export { announcementRoutes };
