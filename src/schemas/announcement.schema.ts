@@ -7,10 +7,11 @@ const announcementSchema = z.object({
   fuel: z.number(),
   mileage: z.number(),
   color: z.string(),
-  price_table_fipe: z.string(), 
+  price_table_fipe: z.string(),
   price: z.string(),
   description: z.string(),
   published: z.boolean(),
+  cover_image: z.string(),
 });
 
 const createAnnouncementSchema = announcementSchema.extend({
@@ -18,4 +19,31 @@ const createAnnouncementSchema = announcementSchema.extend({
   createdAt: z.string(),
 });
 
-export { announcementSchema, createAnnouncementSchema };
+const updateAnnouncementSchema = z.object({
+  brand: z.string().optional(),
+  model: z.string().optional(),
+  year: z.string().optional(),
+  fuel: z.number().optional(),
+  mileage: z.number().optional(),
+  color: z.string().optional(),
+  price_table_fipe: z.string().optional(),
+  price: z.string().optional(),
+  description: z.string().optional(),
+  published: z.boolean().optional(),
+  cover_image: z.string().optional(),
+});
+
+const updateAnnouncementSchemaReturn = updateAnnouncementSchema.extend({
+  id: z.string().optional(),
+  createdAt: z.string().optional(),
+});
+
+const returnAnnouncementSchemaAll = createAnnouncementSchema.array();
+
+export {
+  announcementSchema,
+  createAnnouncementSchema,
+  updateAnnouncementSchema,
+  updateAnnouncementSchemaReturn,
+  returnAnnouncementSchemaAll,
+};
