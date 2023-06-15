@@ -3,7 +3,7 @@ import { AppDataSource } from "../../data-source";
 import { Announcement } from "../../entities/announcement.entity";
 
 const deleteAnnouncementService = async (
-  announcementId: number
+  announcementId: string
 ): Promise<void> => {
   const announcementRepository: Repository<Announcement> =
     AppDataSource.getRepository(Announcement);

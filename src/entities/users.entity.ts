@@ -35,7 +35,7 @@ class User {
 
   @Column({ type: "date" })
   date_of_birth: string;
-  
+
   @Column({ type: "varchar", length: 300, nullable: true })
   description: string;
 

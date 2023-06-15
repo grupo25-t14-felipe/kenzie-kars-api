@@ -9,10 +9,11 @@ const ensureAnnouncementExistsMiddleware = async (
   response: Response,
   next: NextFunction
 ): Promise<void> => {
-  const announcementRepository: Repository<Announcement> = AppDataSource.getRepository(Announcement);
+  const announcementRepository: Repository<Announcement> =
+    AppDataSource.getRepository(Announcement);
 
   const findAnnouncement = await announcementRepository.findOneBy({
-    id: parseInt(request.params.id),
+    id: request.params.id,
   });
 
   if (!findAnnouncement) {

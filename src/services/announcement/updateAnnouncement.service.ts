@@ -6,21 +6,22 @@ import {
   announcementUpdate,
 } from "../../interfaces/announcement.interface";
 import {
+  createAnnouncementSchema,
   updateAnnouncementSchema,
   updateAnnouncementSchemaReturn,
 } from "../../schemas/announcement.schema";
+import { iAnnouncementReturn } from "../../interfaces/announcement.interface";
 
 const updateAnnouncementService = async (
   announcementData: iAnnouncementUpdate,
-  announcementId: any
-): Promise<announcementUpdate> => {
+  announcementId: string
+): Promise<iAnnouncementReturn> => {
   const announcementRepository: Repository<Announcement> =
     AppDataSource.getRepository(Announcement);
 
-  const oldData: any =
-    await announcementRepository.findOneBy({
-      id: announcementId,
-    });
+  const oldData: any = await announcementRepository.findOneBy({
+    id: announcementId,
+  });
 
   const announcement = announcementRepository.create({
     ...oldData,
@@ -29,7 +30,8 @@ const updateAnnouncementService = async (
 
   await announcementRepository.save(announcement);
 
-  const newAnnouncement: announcementUpdate = updateAnnouncementSchemaReturn.parse(announcement);
+  const newAnnouncement: iAnnouncementReturn =
+    createAnnouncementSchema.parse(announcement);
 
   return newAnnouncement;
 };

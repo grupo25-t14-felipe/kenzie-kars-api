@@ -5,8 +5,9 @@ import {
   iAnnouncementRetriveReturn,
   iAnnouncementUpdate,
 } from "../interfaces/announcement.interface";
-import { retrieveAnnouncementService } from "../services/announcement/retrieveAnnouncement.service";
+import { listAnnouncementService } from "../services/announcement/listAnnouncement.service";
 import { deleteAnnouncementService } from "../services/announcement/deleteAnnouncement.service";
+import { RetrieveAnnouncementService } from "../services/announcement/retrieveAnnouncement.service";
 
 const createAnnouncementController = async (
   req: Request,
@@ -26,7 +27,7 @@ const updateAnnouncementController = async (
   res: Response
 ): Promise<Response | void> => {
   const announcementData: iAnnouncementUpdate = req.body;
-  const announcementId: number = parseInt(req.params.id);
+  const announcementId: string = req.params.id;
 
   const newData = await updateAnnouncementService(
     announcementData,
@@ -36,30 +37,43 @@ const updateAnnouncementController = async (
   return res.status(200).json(newData);
 };
 
-const retrieveAnnouncementController = async (
+const listAnnouncementController = async (
   req: Request,
   res: Response
 ): Promise<Response | void> => {
   const getAnnouncement: iAnnouncementRetriveReturn =
-    await retrieveAnnouncementService();
+    await listAnnouncementService();
+
+  return res.status(200).json(getAnnouncement);
+};
+
+const retrieveAnnouncementController = async (
+  req: Request,
+  res: Response
+): Promise<Response | void> => {
+  const announcementId: string = req.params.id;
+
+  const getAnnouncement: iAnnouncementRetriveReturn =
+    await RetrieveAnnouncementService(announcementId);
 
   return res.status(200).json(getAnnouncement);
 };
 
 const deleteAnnouncementController = async (
-  request: Request,
-  response: Response
+  req: Request,
+  res: Response
 ): Promise<Response | void> => {
-  const announcementId: number = parseInt(request.params.id);
+  const announcementId: string = req.params.id;
 
   await deleteAnnouncementService(announcementId);
 
-  response.status(204).send();
+  res.status(204).send();
 };
 
 export {
   createAnnouncementController,
   updateAnnouncementController,
+  listAnnouncementController,
   retrieveAnnouncementController,
   deleteAnnouncementController,
 };

@@ -11,6 +11,7 @@ const announcementSchema = z.object({
   price: z.string(),
   description: z.string(),
   published: z.boolean(),
+  cover_image: z.string(),
 });
 
 const createAnnouncementSchema = announcementSchema.extend({
@@ -29,6 +30,7 @@ const updateAnnouncementSchema = z.object({
   price: z.string().optional(),
   description: z.string().optional(),
   published: z.boolean().optional(),
+  cover_image: z.string().optional(),
 });
 
 const updateAnnouncementSchemaReturn = updateAnnouncementSchema.extend({
@@ -36,7 +38,7 @@ const updateAnnouncementSchemaReturn = updateAnnouncementSchema.extend({
   createdAt: z.string().optional(),
 });
 
-const returnAnnouncementSchemaAll = announcementSchema.array();
+const returnAnnouncementSchemaAll = createAnnouncementSchema.array();
 
 export {
   announcementSchema,

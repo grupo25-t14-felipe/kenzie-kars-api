@@ -1,20 +1,32 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Announcement } from "../../entities/announcement.entity";
+import { AppError } from "../../errors/AppError";
 import { returnAnnouncementSchemaAll } from "../../schemas/announcement.schema";
 import { iAnnouncementRetriveReturn } from "../../interfaces/announcement.interface";
+import { User } from "../../entities/users.entity";
 
-const retrieveAnnouncementService =
-  async (): Promise<iAnnouncementRetriveReturn> => {
-    const announcementRepository: Repository<Announcement> =
-      AppDataSource.getRepository(Announcement);
+const RetrieveAnnouncementService = async (
+  userId: string
+): Promise<iAnnouncementRetriveReturn> => {
+  const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
-    const listAnnouncement: Array<Announcement> =
-      await announcementRepository.find();
+  const user: User | null = await userRepository.findOne({
+    where: {
+      id: userId,
+    },
+    relations: {
+      announcement: true,
+    },
+  });
 
-    const announcements = returnAnnouncementSchemaAll.parse(listAnnouncement);
+  if (!user) {
+    throw new AppError("User not found", 404);
+  }
 
-    return announcements;
-  };
+  const announcements = returnAnnouncementSchemaAll.parse(user.announcement);
 
-export { retrieveAnnouncementService };
+  return announcements;
+};
+
+export { RetrieveAnnouncementService };

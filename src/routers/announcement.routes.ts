@@ -3,28 +3,35 @@ import { ensureauthMiddleware } from "../middlewares/ensureAuthExists.middleware
 import {
   createAnnouncementController,
   deleteAnnouncementController,
+  listAnnouncementController,
   retrieveAnnouncementController,
   updateAnnouncementController,
 } from "../controllers/announcement.controller";
 import ensureAnnouncementExistsMiddleware from "../middlewares/ensureAnnouncementExists.middleware";
+import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
+import {
+  announcementSchema,
+  updateAnnouncementSchema,
+} from "../schemas/announcement.schema";
 
 const announcementRoutes = Router();
 
-announcementRoutes.post("", ensureauthMiddleware, createAnnouncementController);
+announcementRoutes.post(
+  "",
+  ensureDataIsValidMiddleware(announcementSchema),
+  ensureauthMiddleware,
+  createAnnouncementController
+);
 announcementRoutes.patch(
   "/:id",
-  ensureauthMiddleware,
+  ensureDataIsValidMiddleware(updateAnnouncementSchema),
   ensureAnnouncementExistsMiddleware,
   updateAnnouncementController
 );
-announcementRoutes.get(
-  "",
-  ensureauthMiddleware,
-  retrieveAnnouncementController
-);
+announcementRoutes.get("", listAnnouncementController);
+announcementRoutes.get("/:id", retrieveAnnouncementController);
 announcementRoutes.delete(
   "/:id",
-  ensureauthMiddleware,
   ensureAnnouncementExistsMiddleware,
   deleteAnnouncementController
 );

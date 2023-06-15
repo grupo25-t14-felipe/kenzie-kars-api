@@ -15,9 +15,9 @@ import { Comment } from "./comment.entity";
 @Entity()
 class Announcement {
   @PrimaryGeneratedColumn("uuid")
-  id: number;
+  id: string;
 
-  @Column({ type: "varchar", length: 250, unique: true })
+  @Column({ type: "varchar", length: 250 })
   brand: string;
 
   @Column({ type: "varchar", length: 250 })
@@ -46,6 +46,9 @@ class Announcement {
 
   @Column({ type: "boolean", default: true })
   published: boolean;
+
+  @Column({ type: "varchar" })
+  cover_image: string ;
 
   @CreateDateColumn({ type: "date" })
   createdAt: string;
