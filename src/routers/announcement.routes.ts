@@ -20,8 +20,8 @@ const announcementRoutes = Router();
 announcementRoutes.post(
   "",
   ensureDataIsValidMiddleware(announcementSchema),
-  // ensureIsAdminMiddleware,
   ensureauthMiddleware,
+  ensureIsAdminMiddleware,
   createAnnouncementController
 );
 announcementRoutes.patch(
