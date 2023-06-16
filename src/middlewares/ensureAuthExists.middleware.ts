@@ -26,10 +26,11 @@ const ensureauthMiddleware = (
           message: "invalid token",
         });
       }
-      
+
       res.locals = {
         email: decoded.email,
         id: decoded.sub,
+        buyer: decoded.buyer,
       };
       return next();
     }
