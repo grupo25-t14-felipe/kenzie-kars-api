@@ -53,7 +53,7 @@ const retrieveAnnouncementController = async (
 ): Promise<Response | void> => {
   const announcementId: string = req.params.id;
 
-  const getAnnouncement: iAnnouncementRetriveReturn =
+  const getAnnouncement =
     await RetrieveAnnouncementService(announcementId);
 
   return res.status(200).json(getAnnouncement);
