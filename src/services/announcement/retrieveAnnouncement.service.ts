@@ -16,7 +16,8 @@ const RetrieveAnnouncementService = async (
       id: announcementId,
     },
     relations:{
-      user:true
+      user:true,
+      image: true
     }
   });
 
