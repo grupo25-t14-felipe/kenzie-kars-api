@@ -13,12 +13,14 @@ import {
   announcementSchema,
   updateAnnouncementSchema,
 } from "../schemas/announcement.schema";
+import ensureIsAdminMiddleware from "../middlewares/ensureIsAdmin.middleware";
 
 const announcementRoutes = Router();
 
 announcementRoutes.post(
   "",
   ensureDataIsValidMiddleware(announcementSchema),
+  // ensureIsAdminMiddleware,
   ensureauthMiddleware,
   createAnnouncementController
 );
