@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { returnAnnouncementSchemaAll } from "./announcement.schema";
 
 const userSchema = z.object({
   name: z.string(),
@@ -20,4 +21,8 @@ const createUserSchema = userSchema
     password: true,
   });
 
-export { userSchema, createUserSchema };
+const UserAnnouncementsSchema = createUserSchema.extend({
+  announcement: returnAnnouncementSchemaAll
+})
+
+export { userSchema, createUserSchema, UserAnnouncementsSchema };

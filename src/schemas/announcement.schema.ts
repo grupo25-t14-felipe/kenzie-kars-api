@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { createUserSchema } from "./user.schema";
 
 const announcementSchema = z.object({
   brand: z.string(),
@@ -39,6 +40,9 @@ const updateAnnouncementSchemaReturn = updateAnnouncementSchema.extend({
 });
 
 const returnAnnouncementSchemaAll = createAnnouncementSchema.array();
+const returnAnnouncementSchema = createAnnouncementSchema.extend({
+  user: createUserSchema
+});
 
 export {
   announcementSchema,
@@ -46,4 +50,5 @@ export {
   updateAnnouncementSchema,
   updateAnnouncementSchemaReturn,
   returnAnnouncementSchemaAll,
+  returnAnnouncementSchema,
 };

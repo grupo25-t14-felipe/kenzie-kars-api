@@ -28,5 +28,4 @@ export class CreateUser1686844826616 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE "comments"`);
         await queryRunner.query(`DROP TABLE "images"`);
     }
-
 }
