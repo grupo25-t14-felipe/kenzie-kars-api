@@ -22,10 +22,7 @@ const RetrieveUserService = async (
   if (!user) {
     throw new AppError("User not found", 404);
   }
-
-  const userAnnouncements = UserAnnouncementsSchema.parse(user);
-
-  return userAnnouncements;
+  return user;
 };
 
 export { RetrieveUserService };

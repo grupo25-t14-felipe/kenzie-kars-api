@@ -15,7 +15,6 @@ const ensureUserExistsMiddleware = async (
     id: request.params.id,
   });
 
-  console.log(findUser);
   if (!findUser) {
     throw new AppError("User not found", 404);
   }
