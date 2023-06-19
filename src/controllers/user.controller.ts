@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import createUserService from "../services/users/createUser.service";
-import { iUser } from "../interfaces/user.interface";
+import { iUser, iUserUpdate } from "../interfaces/user.interface";
 import { RetrieveUserService } from "../services/users/retrieveUser.service";
+import { updateUserService } from "../services/users/updateUser.service";
 
 const createUserController = async (req: Request, res: Response) => {
   const userData: iUser = req.body;
@@ -22,4 +23,13 @@ const retrieveUserController = async (
   return res.status(200).json(getUser);
 };
 
-export { createUserController, retrieveUserController };
+const updateUserController = async (req: Request, res: Response) => {
+  const userId: string = req.params.id;
+  const body: iUserUpdate = req.body;
+
+  const updatedUser = await updateUserService( userId, body );
+
+  return res.status(200).json( updatedUser );
+}
+
+export { createUserController, retrieveUserController, updateUserController };

@@ -21,8 +21,9 @@ const createUserSchema = userSchema
     password: true,
   });
 
+const updateUserSchema = userSchema.omit({ buyer: true }).partial()
 const UserAnnouncementsSchema = createUserSchema.extend({
   announcement: returnAnnouncementSchemaAll
 })
 
-export { userSchema, createUserSchema, UserAnnouncementsSchema };
+export { userSchema, createUserSchema, UserAnnouncementsSchema, updateUserSchema };
