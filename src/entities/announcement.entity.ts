@@ -56,7 +56,7 @@ class Announcement {
   @DeleteDateColumn({ type: "date" })
   deletedAt: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { onDelete: 'CASCADE' })
   @JoinColumn()
   user: User | null;
 

@@ -20,7 +20,7 @@ class Comment {
   @CreateDateColumn({ type: "date" })
   createdAt: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { onDelete: 'CASCADE' })
   @JoinColumn()
   user: User | null;
 
