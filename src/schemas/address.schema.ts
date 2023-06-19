@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { userSchema } from "./user.schema";
+import { createUserSchema } from "./user.schema";
 
 const addressRequestSchema = z.object({
   cep: z.string(),
@@ -12,7 +12,9 @@ const addressRequestSchema = z.object({
 
 const addressResponseSchema = addressRequestSchema.merge( z.object({
   id: z.string(),
-  user: userSchema
+  user: createUserSchema.transform(({ id, name, email, ...data })=> { 
+    return { id: id, name: name, email: email }
+  })
 }))
 
 export {

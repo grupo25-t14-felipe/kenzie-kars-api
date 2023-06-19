@@ -14,7 +14,6 @@ import {
   updateAnnouncementSchema,
 } from "../schemas/announcement.schema";
 import ensureIsAdminMiddleware from "../middlewares/ensureIsAdmin.middleware";
-import { imageRoutes } from "./image.routes";
 
 const announcementRoutes = Router();
 
@@ -38,7 +37,5 @@ announcementRoutes.delete(
   ensureAnnouncementExistsMiddleware,
   deleteAnnouncementController
 );
-
-announcementRoutes.use('/:id/image', imageRoutes)
 
 export { announcementRoutes };
