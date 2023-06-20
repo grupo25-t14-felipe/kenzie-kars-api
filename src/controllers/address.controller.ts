@@ -3,6 +3,7 @@ import { iAddressRequest, iAddressUpdate } from "../interfaces/address.interface
 import { createAddressService } from "../services/address/createAddress.service";
 import { updateAddressService } from "../services/address/updateAddress.service";
 import { retrieveAddressService } from "../services/address/retrieveAddress.service";
+import { deleteAddressService } from "../services/address/deleteAddress.service";
 
 const createAddressController = async (req: Request, res: Response) => {
   const userId: string = req.params.id;
@@ -30,8 +31,17 @@ const retrieveAddressController = async (req: Request, res: Response) => {
   return res.status(200).json(address);
 }
 
+const deleteAddressController = async (req: Request, res: Response) => {
+  const id: string = req.params.addressId;
+
+  const deletedAddress = await deleteAddressService( id );
+
+  res.status(204).json(deletedAddress);
+}
+
 export { 
   createAddressController,
   updateAddressController,
-  retrieveAddressController
+  retrieveAddressController,
+  deleteAddressController
 };

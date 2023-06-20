@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createAddressController, retrieveAddressController, updateAddressController } from "../controllers/address.controller";
+import { createAddressController, deleteAddressController, retrieveAddressController, updateAddressController } from "../controllers/address.controller";
 import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
 import { addressRequestSchema, addressUpdateSchema } from "../schemas/address.schema";
 
@@ -20,6 +20,11 @@ addressRoutes.patch(
 addressRoutes.get(
   '/:addressId',
   retrieveAddressController
+)
+
+addressRoutes.delete(
+  '/:addressId',
+  deleteAddressController
 )
 
 export { addressRoutes }
