@@ -17,7 +17,10 @@ const addressResponseSchema = addressRequestSchema.merge( z.object({
   })
 }))
 
+const addressUpdateSchema = addressRequestSchema.partial()
+
 export {
   addressRequestSchema,
-  addressResponseSchema
+  addressResponseSchema,
+  addressUpdateSchema
 }
