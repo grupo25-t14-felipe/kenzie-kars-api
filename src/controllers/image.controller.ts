@@ -3,6 +3,7 @@ import { createImageService } from "../services/image/createImage.service";
 import { updateImageService } from "../services/image/updateImage.service";
 import { iImage } from "../interfaces/image.interface";
 import { retrieveImageService } from "../services/image/retrieveImage.service";
+import { deleteImageService } from "../services/image/deleteImage.service";
 
 const createImageController = async ( req: Request, res: Response ) => {
     const announcementId = req.params.id;
@@ -30,8 +31,17 @@ const retrieveImageController = async ( req: Request, res: Response ) => {
     res.status(200).json(image);
 }
 
+const deleteImageController = async ( req: Request, res: Response ) => {
+    const id: string = req.params.id;
+
+    const deletedImage = await deleteImageService( id );
+
+    res.status(204).json(deletedImage)
+}
+
 export {
     createImageController,
     updateImageController,
-    retrieveImageController
+    retrieveImageController,
+    deleteImageController
 }
