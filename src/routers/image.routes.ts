@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createImageController, updateImageController } from "../controllers/image.controller";
+import { createImageController, retrieveImageController, updateImageController } from "../controllers/image.controller";
 
 const imageRoutes = Router();
 
@@ -8,5 +8,9 @@ imageRoutes.patch(
   "/:imageId", 
   updateImageController
 );
+imageRoutes.get(
+  "/:id",
+  retrieveImageController
+)
 
 export { imageRoutes }
