@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createAddressController, updateAddressController } from "../controllers/address.controller";
+import { createAddressController, retrieveAddressController, updateAddressController } from "../controllers/address.controller";
 import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
 import { addressRequestSchema, addressUpdateSchema } from "../schemas/address.schema";
 
@@ -15,6 +15,11 @@ addressRoutes.patch(
   '/:addressId',
   ensureDataIsValidMiddleware( addressUpdateSchema ),
   updateAddressController
+)
+
+addressRoutes.get(
+  '/:addressId',
+  retrieveAddressController
 )
 
 export { addressRoutes }
