@@ -45,6 +45,9 @@ class User {
   @CreateDateColumn({ type: "date" })
   createdAt: string;
 
+  @Column({ type: "varchar", default: null, nullable: true })
+  reset_token: string | null;
+
   @OneToMany(() => Announcement, (announcement) => announcement.user)
   announcement: Announcement[];
 

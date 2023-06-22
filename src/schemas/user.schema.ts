@@ -10,6 +10,7 @@ const userSchema = z.object({
   date_of_birth: z.string(),
   description: z.string(),
   buyer: z.boolean(),
+  // reset_password: z.string().nullable().optional(),
 });
 
 const createUserSchema = userSchema
@@ -21,9 +22,14 @@ const createUserSchema = userSchema
     password: true,
   });
 
-const updateUserSchema = userSchema.omit({ buyer: true }).partial()
+const updateUserSchema = userSchema.omit({ buyer: true }).partial();
 const UserAnnouncementsSchema = createUserSchema.extend({
-  announcement: returnAnnouncementSchemaAll
-})
+  announcement: returnAnnouncementSchemaAll,
+});
 
-export { userSchema, createUserSchema, UserAnnouncementsSchema, updateUserSchema };
+export {
+  userSchema,
+  createUserSchema,
+  UserAnnouncementsSchema,
+  updateUserSchema,
+};
