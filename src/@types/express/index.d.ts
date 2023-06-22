@@ -5,6 +5,7 @@ declare global {
     interface Request {
       user: {
         buyer: boolean;
+        token: string;
       };
     }
   }
