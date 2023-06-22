@@ -30,7 +30,7 @@ class Address {
   @Column({ type: "varchar", length: 200, nullable: true })
   complement: string;
 
-  @OneToOne(() => User, { onDelete: 'CASCADE' })
+  @OneToOne(() => User, (user) => user.address, { onDelete: 'CASCADE' })
   @JoinColumn()
   user: User;
 }
