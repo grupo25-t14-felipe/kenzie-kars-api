@@ -26,11 +26,11 @@ class Announcement {
   @Column({ type: "varchar", length: 4 })
   year: string;
 
-  @Column({ type: "integer" })
-  fuel: number;
+  @Column({ type: "varchar", length: 250 })
+  fuel: string;
 
-  @Column({ type: "integer" })
-  mileage: number;
+  @Column({ type: "varchar", length: 250 })
+  mileage: string;
 
   @Column({ type: "varchar", length: 50 })
   color: string;
