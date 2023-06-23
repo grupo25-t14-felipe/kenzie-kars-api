@@ -36,7 +36,7 @@ class EmailService {
       theme: "default",
       product: {
         name: "Kenzie Kars",
-        link: "http://localhost:3000/users",
+        link: "http://localhost:3000/",
       },
     });
 
