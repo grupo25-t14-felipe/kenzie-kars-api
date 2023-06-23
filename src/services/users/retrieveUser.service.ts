@@ -16,6 +16,7 @@ const RetrieveUserService = async (
     },
     relations: {
       announcement: true,
+      address: true
     },
   });
 

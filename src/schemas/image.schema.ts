@@ -6,7 +6,6 @@ const imageSchema = z.object({
 
 const createImageSchema = imageSchema.extend({
   id: z.string(),
-  // userId: z.string(),
 });
 
 export { imageSchema, createImageSchema };

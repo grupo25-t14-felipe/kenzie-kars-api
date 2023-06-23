@@ -5,12 +5,14 @@ import {
   CreateDateColumn,
   Entity,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { getRounds, hashSync } from "bcryptjs";
 import { Length } from "class-validator";
 import { Announcement } from "./announcement.entity";
 import { Comment } from "./comment.entity";
+import { Address } from "./addresses.entity";
 
 @Entity("users")
 class User {
@@ -44,6 +46,12 @@ class User {
 
   @CreateDateColumn({ type: "date" })
   createdAt: string;
+
+  @Column({ type: "varchar", default: null, nullable: true })
+  reset_token: string | null;
+
+  @OneToOne(() => Address, (address) => address.user)
+  address: Address
 
   @OneToMany(() => Announcement, (announcement) => announcement.user)
   announcement: Announcement[];

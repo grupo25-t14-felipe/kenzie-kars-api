@@ -29,12 +29,14 @@ const ensureauthMiddleware = (
 
       req.user = {
         buyer: decoded.buyer,
+        token: token,
       };
 
       res.locals = {
         email: decoded.email,
         id: decoded.sub,
         buyer: decoded.buyer,
+        token: token,
       };
       return next();
     }
