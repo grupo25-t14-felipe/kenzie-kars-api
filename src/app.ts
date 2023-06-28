@@ -16,7 +16,7 @@ app.use("/users", usersRoutes);
 app.use("/users/:id/address", addressRoutes);
 app.use("/login", loginRoutes);
 app.use("/announcements", announcementRoutes);
-app.use('/announcements/:id/image', imageRoutes);
+app.use('/image', imageRoutes);
 
 app.use(handleErrors);
 
