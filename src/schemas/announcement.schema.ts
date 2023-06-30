@@ -40,12 +40,12 @@ const updateAnnouncementSchemaReturn = updateAnnouncementSchema.extend({
   createdAt: z.string().optional(),
 });
 
-const returnAnnouncementSchemaAll = createAnnouncementSchema.array();
 const returnAnnouncementSchema = createAnnouncementSchema.extend({
   user: createUserSchema,
   image: createImageSchema.array()
 });
 
+const returnAnnouncementSchemaAll = returnAnnouncementSchema.array();
 export {
   announcementSchema,
   createAnnouncementSchema,
