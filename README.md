@@ -26,7 +26,9 @@ Visão geral do projeto, um pouco das tecnologias usadas.
 - [Zod](https://zod.dev/)
 
 A URL base da aplicação:
-fazer o deploy e colocamos aqui
+
+https://kenzie-kars-api.onrender.com
+
 
 ---
 
