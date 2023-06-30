@@ -60,10 +60,6 @@ class Announcement {
   @JoinColumn()
   user: User | null;
 
-  // @ManyToOne(() => Comment, { onDelete: "CASCADE" })
-  // @JoinColumn()
-  // comments: Comment | null;
-
   @OneToMany(() => Image, (image) => image.announcement)
   image: Image[];
 

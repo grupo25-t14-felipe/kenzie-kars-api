@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { createUserSchema } from "./user.schema";
 import { createImageSchema } from "./image.schema";
+import { createCommentSchema } from "./comment.schema";
 
 const announcementSchema = z.object({
   brand: z.string(),
@@ -42,7 +43,8 @@ const updateAnnouncementSchemaReturn = updateAnnouncementSchema.extend({
 
 const returnAnnouncementSchema = createAnnouncementSchema.extend({
   user: createUserSchema,
-  image: createImageSchema.array()
+  image: createImageSchema.array(),
+  comment: createCommentSchema.array(),
 });
 
 const returnAnnouncementSchemaAll = returnAnnouncementSchema.array();

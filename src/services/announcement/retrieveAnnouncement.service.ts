@@ -7,7 +7,6 @@ import { returnAnnouncementSchema } from "../../schemas/announcement.schema";
 const RetrieveAnnouncementService = async (
   announcementId: string
 ): Promise<iAnnouncementUserReturn> => {
-
   const announcementRepository: Repository<Announcement> =
     AppDataSource.getRepository(Announcement);
 
@@ -15,13 +14,14 @@ const RetrieveAnnouncementService = async (
     where: {
       id: announcementId,
     },
-    relations:{
-      user:true,
-      image: true
-    }
+    relations: {
+      user: true,
+      image: true,
+      comment: true,
+    },
   });
 
-  return returnAnnouncementSchema.parse(announcement)
+  return returnAnnouncementSchema.parse(announcement);
 };
 
 export { RetrieveAnnouncementService };

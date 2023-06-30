@@ -17,13 +17,13 @@ class Comment {
   @Column({ type: "varchar", length: 300 })
   description: string;
 
-  @CreateDateColumn({ type: "date" })
-  createdAt: string;
+  @CreateDateColumn({ type: "timestamp" })
+  createdAt: Date;
 
-  @ManyToOne(() => User, { onDelete: 'CASCADE' })
+  @ManyToOne(() => User, { onDelete: "CASCADE" })
   @JoinColumn()
   user: User | null;
-  
+
   @ManyToOne(() => Announcement)
   @JoinColumn()
   announcement: Announcement | null;
