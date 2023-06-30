@@ -10,7 +10,12 @@ const listAnnouncementService =
       AppDataSource.getRepository(Announcement);
 
     const listAnnouncement: Array<Announcement> =
-      await announcementRepository.find();
+      await announcementRepository.find({
+        relations:{
+          image:true,
+          user:true
+        }
+      });
 
     const announcements = returnAnnouncementSchemaAll.parse(listAnnouncement);
 
