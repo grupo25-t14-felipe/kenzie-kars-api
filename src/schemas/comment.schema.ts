@@ -6,7 +6,7 @@ const commentSchema = z.object({
 
 const createCommentSchema = commentSchema.extend({
   id: z.string(),
-  createdAt: z.string(),
+  createdAt: z.date(),
 });
 
 export { commentSchema, createCommentSchema };
