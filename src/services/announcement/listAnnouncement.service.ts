@@ -13,7 +13,10 @@ const listAnnouncementService =
       await announcementRepository.find({
         relations:{
           image:true,
-          user:true
+          user:true,
+          comment:{
+            user:true
+          }
         }
       });
 
