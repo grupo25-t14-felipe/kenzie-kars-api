@@ -48,6 +48,7 @@ const returnAnnouncementSchema = createAnnouncementSchema.extend({
 });
 
 const returnAnnouncementSchemaAll = returnAnnouncementSchema.array();
+
 export {
   announcementSchema,
   createAnnouncementSchema,
