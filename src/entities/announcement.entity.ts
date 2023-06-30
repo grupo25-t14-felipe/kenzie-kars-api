@@ -48,7 +48,7 @@ class Announcement {
   published: boolean;
 
   @Column({ type: "varchar" })
-  cover_image: string ;
+  cover_image: string;
 
   @CreateDateColumn({ type: "date" })
   createdAt: string;
@@ -56,9 +56,13 @@ class Announcement {
   @DeleteDateColumn({ type: "date" })
   deletedAt: string;
 
-  @ManyToOne(() => User, { onDelete: 'CASCADE' })
+  @ManyToOne(() => User, { onDelete: "CASCADE" })
   @JoinColumn()
   user: User | null;
+
+  // @ManyToOne(() => Comment, { onDelete: "CASCADE" })
+  // @JoinColumn()
+  // comments: Comment | null;
 
   @OneToMany(() => Image, (image) => image.announcement)
   image: Image[];
