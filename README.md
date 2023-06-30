@@ -8,7 +8,9 @@
     - [Instalando Dependências](#31-instalando-dependências)
     - [Variáveis de Ambiente](#32-variáveis-de-ambiente)
     - [Migrations](#33-migrations)
-- [Endpoints](#4-endpoints)
+- [Sobre](#4-sobre)
+-[Autores](#5-autores)
+-[Licença](#6-licença)
 
 ---
 
@@ -67,195 +69,15 @@ Execute as migrations com o comando:
 yarn typeorm migration:run -d src/data-source.ts
 ```
 
-## 4. Endpoints
+## 4. Sobre
 
-[ Voltar para o topo ](#tabela-de-conteúdos)
+Projeto desenvolvido durante o Módulo 6 da Turma 14 do curso de Desenvolvimento Full Stack da Kenzie Academy Brasil. Trata-se de uma API onde é possível registrar e cadastrar dois tipos de usuários (anunciante e comprador), onde o anunciante pode realizar o cadastro de anúncio, com funções específicas como editar, alterar e excluir. O usuário comprador terá acesso aos anúncios podendo efetuar a compra ou não.
 
-### Índice
+## 5. Autores
+Gabriel de Lima Santana
+José Orlando de Carvalho Júnior
+Leonardo Miranda
+Ygor Rupp
 
-- [Users](#1-users)
-    - [POST - /users](#11-criação-de-usuário)
-    - [GET - /users](#12-listando-usuários)
-	- [GET - /users/:user_id](#13-listar-usuário-por-id)
-- [Login]
-	-[POST - /login](login-de-usuário)
-- [Announcement](#3-cart)
-- [Image](#4-Image)
-
----
-
-## 1. **Users**
-[ Voltar para os Endpoints ](#4-endpoints)
-
-O objeto User é definido como:
-
-| Campo      | Tipo   | Descrição                                     |
-| -----------|--------|-------------------------------------------------|
-| id         | string | Identificador único do usuário                  |
-| name       | string | O nome do usuário.                              |
-| email      | string | O e-mail do usuário.                            |
-| password   | string | A senha de acesso do usuário                    |
-| isAdm      | boolean | Define se um usuário é Administrador ou não.   |
-
-### Endpoints
-
-| Método   | Rota       | Descrição                               |
-|----------|------------|-----------------------------------------|
-| POST     | /users     | Criação de um usuário.                  |
-| GET      | /users     | Lista todos os usuários                 |
-| GET      | /users/:user_id     | Lista um usuário usando seu ID como parâmetro 
-
----
-
-### 1.1. **Criação de Usuário**
-
-[ Voltar para os Endpoints ](#5-endpoints)
-
-### `/users`
-
-### Exemplo de Request:
-```
-POST /users
-Host: http://suaapi.com/v1
-Authorization: None
-Content-type: application/json
-```
-
-### Corpo da Requisição:
-```json
-{
-	"name": "eDuArDo",
-	"email": "edu@mail.com",
-	"password": "1234",
-	"isAdm": true
-}
-```
-
-### Schema de Validação com Yup:
-```javascript
-name: yup
-        .string()
-	.required()
-	.transform((value, originalValue) => { 
-		return titlelify(originalValue) 
-	}),
-email: yup
-        .string()
-	.email()
-	.required()
-	.transform((value, originalValue) => { 
-		return originalValue.toLowerCase() 
-	}),
-password: yup
-        .string()
-	.required()
-	.transform((value, originalValue) => { 
-		return bcrypt.hashSync(originalValue, 10) 
-	}),
-isAdm: yup
-        .boolean()
-	.required(),
-```
-OBS.: Chaves não presentes no schema serão removidas.
-
-### Exemplo de Response:
-```
-201 Created
-```
-
-```json
-{
-	"id": "9cda28c9-e540-4b2c-bf0c-c90006d37893",
-	"name": "Eduardo",
-	"email": "edu@mail.com",
-	"isAdm": true
-}
-```
-
-### Possíveis Erros:
-| Código do Erro | Descrição |
-|----------------|-----------|
-| 409 Conflict   | Email already registered. |
-
----
-
-### 1.2. **Listando Usuários**
-
-[ Voltar aos Endpoints ](#5-endpoints)
-
-### `/users`
-
-### Exemplo de Request:
-```
-GET /users
-Host: http://suaapi.com/v1
-Authorization: None
-Content-type: application/json
-```
-
-### Corpo da Requisição:
-```json
-Vazio
-```
-
-### Exemplo de Response:
-```
-200 OK
-```
-```json
-[
-	{
-		"id": "9cda28c9-e540-4b2c-bf0c-c90006d37893",
-		"name": "Eduardo",
-		"email": "edu@mail.com",
-		"isAdm": true
-	}
-]
-```
-
-### Possíveis Erros:
-Nenhum, o máximo que pode acontecer é retornar uma lista vazia.
-
----
-
-### 1.3. **Listar Usuário por ID**
-
-[ Voltar aos Endpoints ](#5-endpoints)
-
-### `/users/:user_id`
-
-### Exemplo de Request:
-```
-GET /users/9cda28c9-e540-4b2c-bf0c-c90006d37893
-Host: http://suaapi.com/v1
-Authorization: None
-Content-type: application/json
-```
-
-### Parâmetros da Requisição:
-| Parâmetro   | Tipo        | Descrição                             |
-|-------------|-------------|---------------------------------------|
-| user_id     | string      | Identificador único do usuário (User) |
-
-### Corpo da Requisição:
-```json
-Vazio
-```
-
-### Exemplo de Response:
-```
-200 OK
-```
-```json
-{
-	"id": "9cda28c9-e540-4b2c-bf0c-c90006d37893",
-	"name": "Eduardo",
-	"email": "edu@mail.com",
-	"isAdm": true
-}
-```
-
-### Possíveis Erros:
-| Código do Erro | Descrição |
-|----------------|-----------|
-| 404 Not Found   | User not found. |
+## 6. Licença
+Este projeto é Open Source para fins educacionais e não comerciais, Tipo de Licença - MIT
