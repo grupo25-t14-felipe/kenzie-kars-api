@@ -4,6 +4,7 @@ import { Announcement } from "../../entities/announcement.entity";
 import { User } from "../../entities/users.entity";
 import { createCommentSchema } from "../../schemas/comment.schema";
 import { Comment } from "../../entities/comment.entity";
+import { AppError } from "../../errors/AppError";
 
 const createCommentService = async (
   commentData: string,
@@ -16,16 +17,21 @@ const createCommentService = async (
     AppDataSource.getRepository(Announcement);
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
-  console.log(adId, userId, "20");
-
   const ad = await adRepository.findOneByOrFail({
     id: adId,
   });
 
+  if (!ad) {
+    throw new AppError("ad not found", 404);
+  }
+
   const user = await userRepository.findOneByOrFail({
     id: userId,
   });
-  console.log(ad.id, user.id, "29");
+
+  if (!user) {
+    throw new AppError("User not found", 404);
+  }
 
   const comment = commentRepository.create({
     description: commentData,
