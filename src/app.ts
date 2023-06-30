@@ -9,6 +9,7 @@ import { addressRoutes } from "./routers/address.routes";
 import { imageRoutes } from "./routers/image.routes";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocs from "./swagger.json";
+import { commentsRoutes } from "./routers/comment.routes";
 
 const app: Application = express();
 
@@ -19,7 +20,7 @@ app.use("/users", usersRoutes);
 app.use("/address", addressRoutes);
 app.use("/login", loginRoutes);
 app.use("/announcements", announcementRoutes);
-app.use('/image', imageRoutes);
+app.use('/announcements/:id/image', imageRoutes);
 
 app.use(handleErrors);
 

@@ -23,7 +23,7 @@ class Comment {
   @ManyToOne(() => User, { onDelete: 'CASCADE' })
   @JoinColumn()
   user: User | null;
-
+  
   @ManyToOne(() => Announcement)
   @JoinColumn()
   announcement: Announcement | null;
