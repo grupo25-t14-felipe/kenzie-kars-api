@@ -8,13 +8,12 @@ const deleteAnnouncementService = async (
   const announcementRepository: Repository<Announcement> =
     AppDataSource.getRepository(Announcement);
 
-  const announcement = await announcementRepository.findOne({
-    where: {
-      id: announcementId,
-    },
-  });
-
-  await announcementRepository.softRemove(announcement!);
+  return await announcementRepository.findOneByOrFail({ 
+    id: announcementId 
+  }).then( async res => {
+    await announcementRepository.delete(res.id);
+    return
+  })
 };
 
 export { deleteAnnouncementService };

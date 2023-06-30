@@ -8,6 +8,7 @@ import { deleteImageService } from "../services/image/deleteImage.service";
 const createImageController = async ( req: Request, res: Response ) => {
     const announcementId = req.params.id;
     const data = req.body;
+    console.log('aqui: ', req);
 
     const image = await createImageService( announcementId, data );
 
@@ -15,7 +16,7 @@ const createImageController = async ( req: Request, res: Response ) => {
 }
 
 const updateImageController = async ( req: Request, res: Response ) => {
-    const id: string = req.params.imageId;
+    const id: string = req.params.id;
     const data: iImage = req.body;
 
     const updatedImage = await updateImageService( id, data );

@@ -6,7 +6,7 @@ import { addressRequestSchema, addressUpdateSchema } from "../schemas/address.sc
 const addressRoutes = Router();
 
 addressRoutes.post(
-  '', 
+  '/user/:id', 
   ensureDataIsValidMiddleware(addressRequestSchema), 
   createAddressController
 );

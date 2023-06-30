@@ -6,12 +6,12 @@ import { imageSchema } from "../schemas/image.schema";
 const imageRoutes = Router();
 
 imageRoutes.post(
-  "/", 
+  "/announcement/:id", 
   ensureDataIsValidMiddleware( imageSchema ),
   createImageController
   );
 imageRoutes.patch(
-  "/:imageId", 
+  "/:id", 
   ensureDataIsValidMiddleware( imageSchema ),
   updateImageController
 );

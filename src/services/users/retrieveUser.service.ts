@@ -15,8 +15,9 @@ const RetrieveUserService = async (
       id: userId,
     },
     relations: {
-      announcement: true,
-    },
+      announcement: { image: true },
+      address: true,
+    }
   });
 
   if (!user) {
