@@ -29,6 +29,10 @@ A URL base da aplicação:
 
 https://kenzie-kars-api.onrender.com
 
+Documentação da API:
+
+https://kenzie-kars-api.onrender.com/docs/
+
 
 ---
 
