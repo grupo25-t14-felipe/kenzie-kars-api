@@ -15,8 +15,6 @@
             "description": "API de produção"
         }
     ],
-    "basePath": "/api",
-    "schemes": ["http"],
     "paths": {
         "/addresses/{id}": {
         "post": {
@@ -535,7 +533,14 @@
         "items": {
           "$ref": "#/definitions/AnnouncementResponse"
         }
-      }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+        }
     }
   }
+}
 }
