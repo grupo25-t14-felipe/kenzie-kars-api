@@ -12,10 +12,12 @@ import swaggerDocs from "./swagger.json";
 import { commentsRoutes } from "./routers/comment.routes";
 
 const app: Application = express();
+app.use(express.json());
 
 app.use(cors());
+
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-app.use(express.json());
+
 app.use("/users", usersRoutes);
 app.use("/address", addressRoutes);
 app.use("/login", loginRoutes);
