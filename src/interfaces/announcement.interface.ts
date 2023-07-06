@@ -14,8 +14,6 @@ type iAnnouncementUserReturn = z.infer<typeof returnAnnouncementSchema>;
 type iAnnouncementUpdate = z.infer<typeof updateAnnouncementSchema>;
 type announcementUpdate = z.infer<typeof updateAnnouncementSchemaReturn>;
 type iAnnouncementRetriveReturn = z.infer<typeof returnAnnouncementSchemaAll>;
-;
-
 export {
   iAnnouncement,
   iAnnouncementReturn,

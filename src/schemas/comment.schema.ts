@@ -9,4 +9,18 @@ const createCommentSchema = commentSchema.extend({
   createdAt: z.date(),
 });
 
-export { commentSchema, createCommentSchema };
+const updateCommentSchema = z.object({
+  description: z.string().optional(),
+});
+
+const updateCommentSchemaReturn = updateCommentSchema.extend({
+  id: z.string().optional(),
+  createdAt: z.date().optional(),
+});
+
+export {
+  commentSchema,
+  createCommentSchema,
+  updateCommentSchema,
+  updateCommentSchemaReturn,
+};

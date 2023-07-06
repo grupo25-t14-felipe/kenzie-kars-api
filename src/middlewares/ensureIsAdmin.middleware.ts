@@ -6,7 +6,7 @@ const ensureIsAdminMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  console.log(req.user)
+  console.log(req.user);
   const authenticatedUser = req.user.buyer;
 
   if (authenticatedUser) {

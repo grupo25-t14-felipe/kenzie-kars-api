@@ -51,7 +51,7 @@ class User {
   reset_token: string | null;
 
   @OneToOne(() => Address, (address) => address.user)
-  address: Address
+  address: Address;
 
   @OneToMany(() => Announcement, (announcement) => announcement.user)
   announcement: Announcement[];

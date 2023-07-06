@@ -4,23 +4,23 @@ import { Image } from "../../entities/image.entity";
 import { createImageSchema } from "../../schemas/image.schema";
 import { Announcement } from "../../entities/announcement.entity";
 
-const createImageService = async ( 
-    announcementId: string, 
-    data: any
-) => {
-    const imageRepository: Repository<Image> = AppDataSource.getRepository( Image )
-    const announcementRepository: Repository<Announcement> = AppDataSource.getRepository( Announcement )
-    
-    const ad = await announcementRepository.findOneByOrFail({ id: announcementId })
+const createImageService = async (announcementId: string, data: any) => {
+  const imageRepository: Repository<Image> = AppDataSource.getRepository(Image);
+  const announcementRepository: Repository<Announcement> =
+    AppDataSource.getRepository(Announcement);
 
-    const image = imageRepository.create({
-        link: data.link,
-        announcement: ad
-    })
+  const ad = await announcementRepository.findOneByOrFail({
+    id: announcementId,
+  });
 
-    await imageRepository.save( image )
+  const image = imageRepository.create({
+    link: data.link,
+    announcement: ad,
+  });
 
-    return createImageSchema.parse( image );
+  await imageRepository.save(image);
+
+  return createImageSchema.parse(image);
 };
 
 export { createImageService };

@@ -15,7 +15,7 @@ class Image {
   @Column({ type: "varchar", unique: true })
   link: string;
 
-  @ManyToOne(() => Announcement, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Announcement, { onDelete: "CASCADE" })
   @JoinColumn()
   announcement: Announcement | null;
 }

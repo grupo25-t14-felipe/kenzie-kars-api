@@ -1,15 +1,8 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Announcement } from "../../entities/announcement.entity";
-import {
-  iAnnouncementUpdate,
-  announcementUpdate,
-} from "../../interfaces/announcement.interface";
-import {
-  createAnnouncementSchema,
-  updateAnnouncementSchema,
-  updateAnnouncementSchemaReturn,
-} from "../../schemas/announcement.schema";
+import { iAnnouncementUpdate } from "../../interfaces/announcement.interface";
+import { createAnnouncementSchema } from "../../schemas/announcement.schema";
 import { iAnnouncementReturn } from "../../interfaces/announcement.interface";
 
 const updateAnnouncementService = async (
