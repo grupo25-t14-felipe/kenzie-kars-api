@@ -11,4 +11,18 @@ const createCommentSchema = commentSchema.extend({
   user: createUserSchema
 });
 
-export { commentSchema, createCommentSchema };
+const updateCommentSchema = z.object({
+  description: z.string().optional(),
+});
+
+const updateCommentSchemaReturn = updateCommentSchema.extend({
+  id: z.string().optional(),
+  createdAt: z.date().optional(),
+});
+
+export {
+  commentSchema,
+  createCommentSchema,
+  updateCommentSchema,
+  updateCommentSchemaReturn,
+};

@@ -8,12 +8,14 @@ const deleteAnnouncementService = async (
   const announcementRepository: Repository<Announcement> =
     AppDataSource.getRepository(Announcement);
 
-  return await announcementRepository.findOneByOrFail({ 
-    id: announcementId 
-  }).then( async res => {
-    await announcementRepository.delete(res.id);
-    return
-  })
+  return await announcementRepository
+    .findOneByOrFail({
+      id: announcementId,
+    })
+    .then(async (res) => {
+      await announcementRepository.delete(res.id);
+      return;
+    });
 };
 
 export { deleteAnnouncementService };

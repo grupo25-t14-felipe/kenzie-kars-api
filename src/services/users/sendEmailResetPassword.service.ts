@@ -14,14 +14,9 @@ const sendEmailResetPasswordService = async (email: string): Promise<any> => {
     },
   });
 
-  console.log(email);
-
-  console.log(user);
-
   if (!user) {
     throw new AppError("User not found", 404);
   }
-  console.log(user);
 
   const token = randomUUID();
   const resetToken = token;
