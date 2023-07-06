@@ -11,10 +11,13 @@ const listAnnouncementService =
 
     const listAnnouncement: Array<Announcement> =
       await announcementRepository.find({
-        relations: {
-          image: true,
-          user: true,
-        },
+        relations:{
+          image:true,
+          user:true,
+          comment:{
+            user:true
+          }
+        }
       });
 
     const announcements = returnAnnouncementSchemaAll.parse(listAnnouncement);
