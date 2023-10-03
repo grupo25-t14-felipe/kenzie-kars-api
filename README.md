@@ -27,7 +27,7 @@ Visão geral do projeto, um pouco das tecnologias usadas.
 
 A URL base da aplicação:
 
-https://kenzie-kars-api.onrender.com
+https://testetecnico-simbiox.onrender.com/
 
 Documentação da API:
 
